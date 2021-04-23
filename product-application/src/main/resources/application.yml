@@ -1,1 +1,14 @@
-
+server:
+  port: 8071
+spring:
+  application:
+    name: product-application
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8081/eureka/
+feign:
+  hystrix:
+    enabled: true
