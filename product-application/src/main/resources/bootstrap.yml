@@ -1,23 +1,23 @@
 server:
-  port: 8081
+  port: 8071
 spring:
   application:
-    name: eureka-server
-  profiles:
-    active: native
+    name: product-application
   cloud:
     config:
-      server:
-        native:
-          search-locations: classpath
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: eureka-server
 eureka:
   instance:
     hostname: localhost
   client:
-    register-with-eureka: false
-    fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8081/eureka/
+feign:
+  hystrix:
+    enabled: true
 logging:
   pattern:
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS} <%thread> %-5level: %msg%n'
